@@ -1,0 +1,5 @@
+# ignore all .exe files
+*.exe
+
+# ignore test files
+*-main.c

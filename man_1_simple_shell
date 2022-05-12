@@ -187,6 +187,6 @@ access(2), chdir(2), execve(2), _exit(2), exit(3), fflush(3), fork(2), free(3), 
 .B Shellby\fR emulates basic functionality of the \fBsh\fR shell.
 This man page borrows from the corresponding man pages sh(1) and dash(1).
 .SH AUTHOR
-Johnel Okon and Esi Ogagaoghene Esi
+Bashir Sale Umar and /*delete the comment and write your name byran*/
 .SH SEE ALSO
 .

@@ -1,5 +1,6 @@
-# ignore exe files
-*.exe
-
-# ignore practice files
-*-my_shell.c
+shell
+hsh
+sf-0119_shell_test_suite
+test
+temp/
+ls

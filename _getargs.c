@@ -10,8 +10,28 @@
  */
 void getargs(char **av)
 {
-	int i;
+	int i, j, ctr;
+	char *line;
+	char newString[40][40];
 
-	for (i = 0; *(av + i) != 0; i++)
-		printf("%s ", av[i]);
+	line = (char *)av;
+	j = 0;
+	ctr = 0;
+	for (i = 0; i <= (strlen(line)); i++)
+	{
+		// if space or NULL is found, assign NULL into newString[ctr]
+		if (line[i] == ' ' || line[i] == '\0')
+		{
+			newString[ctr][j] = '\0';
+			ctr++;
+			j = 0;
+		}
+		else
+		{
+			newString[ctr][j] = line[i];
+			j++;
+		}
+	}
+	for(i = 1; i < ctr; i++)
+		printf("%s ", newString[i]);	
 }

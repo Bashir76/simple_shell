@@ -26,23 +26,21 @@ char **prompt()
 			break;
 	}
 	*(buf + count) = '\0';
-	*(buf + (count + 1)) = '\n';
 
 	line = malloc(sizeof(char) * count);
 	if (line == NULL)
 		return (NULL);
 
-	for (i = 0; *(buf + i) != '\n'; i++)
+	for (i = 0; *(buf + i) != '\0'; i++)
 	{
-		if (*(buf + i) == ' ')
+		/* if (*(buf + i) == ' ')
 		{
 			*(line + i) = '\0';
 			continue;
-		}
+		} */
 		*(line + i) = *(buf + i);
 	}
 	*(line + i) = '\0';
-	*(line + (i + 1)) = '\n';
 	/* line = strtok(line, " "); */
 	free (buf);
 	

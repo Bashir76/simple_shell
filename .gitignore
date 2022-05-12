@@ -2,5 +2,4 @@
 *.exe
 
 # ignore practice files
-0-my_shell.c
-1-my_shell.c
+*-my_shell.c

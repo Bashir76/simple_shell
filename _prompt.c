@@ -8,8 +8,7 @@
 char **prompt()
 {
 	unsigned int i, c;
-	char *line;
-	char *buf;
+	char *line, *buf;
 	int count = 0;
 
 	printf("$ ");
@@ -32,19 +31,9 @@ char **prompt()
 		return (NULL);
 
 	for (i = 0; *(buf + i) != '\0'; i++)
-	{
-		/* if (*(buf + i) == ' ')
-		{
-			*(line + i) = '\0';
-			continue;
-		} */
 		*(line + i) = *(buf + i);
-	}
-	*(line + i) = '\0';
-	/* line = strtok(line, " "); */
-	free (buf);
-	
 
-	/* printf ("%s\n", line); */
+	*(line + i) = '\0';
+	free (buf);
 	return ((char **)line);
 }

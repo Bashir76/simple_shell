@@ -3,7 +3,6 @@
 /**
  * main - get arguments
  *
- * ac: param count
  * av: arguments array
  *
  * Return: Void

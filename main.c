@@ -1,38 +1,73 @@
-#include "holberton.h"
+#include "main.h"
 
 /**
- * main - entry point for application
- * @ac: argument count
- * @av: argument vector
- * Return: 0 on success
+ * free_data - frees data structure
+ *
+ * @datash: data structure
+ * Return: no return
  */
-int main(int ac, char **av)
+void free_data(data_shell *datash)
 {
-	config build;
+	unsigned int i;
 
-	(void)ac;
-	signal(SIGINT, sigintHandler);
-	configInit(&build);
-	build.shellName = av[0];
-	shell(&build);
-	return (0);
+	for (i = 0; datash->_environ[i]; i++)
+	{
+		free(datash->_environ[i]);
+	}
+
+	free(datash->_environ);
+	free(datash->pid);
 }
 
 /**
- * configInit - initialize member values for config struct
- * @build: input build
- * Return: build with initialized members
+ * set_data - Initialize data structure
+ *
+ * @datash: data structure
+ * @av: argument vector
+ * Return: no return
  */
-config *configInit(config *build)
+void set_data(data_shell *datash, char **av)
 {
-	build->env = generateLinkedList(environ);
-	build->envList = NULL;
-	build->args = NULL;
-	build->buffer = NULL;
-	build->path = _getenv("PATH", environ);
-	build->fullPath = NULL;
-	build->lineCounter = 0;
-	build->shellName = NULL;
-	build->errorStatus = 0;
-	return (build);
+	unsigned int i;
+
+	datash->av = av;
+	datash->input = NULL;
+	datash->args = NULL;
+	datash->status = 0;
+	datash->counter = 1;
+
+	for (i = 0; environ[i]; i++)
+		;
+
+	datash->_environ = malloc(sizeof(char *) * (i + 1));
+
+	for (i = 0; environ[i]; i++)
+	{
+		datash->_environ[i] = _strdup(environ[i]);
+	}
+
+	datash->_environ[i] = NULL;
+	datash->pid = aux_itoa(getpid());
+}
+
+/**
+ * main - Entry point
+ *
+ * @ac: argument count
+ * @av: argument vector
+ *
+ * Return: 0 on success.
+ */
+int main(int ac, char **av)
+{
+	data_shell datash;
+	(void) ac;
+
+	signal(SIGINT, get_sigint);
+	set_data(&datash, av);
+	shell_loop(&datash);
+	free_data(&datash);
+	if (datash.status < 0)
+		return (255);
+	return (datash.status);
 }
